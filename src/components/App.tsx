@@ -1,7 +1,28 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-import "./App.css";
+import styled, { keyframes } from "styled-components";
 import logo from "./logo.svg";
+
+const Div = styled.div`
+  text-align: center;
+`;
+
+const spin = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
+const AppLogo = styled.img`
+  animation-name: ${spin};
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  height: 40vmin;
+`;
 
 const Header = styled.header`
   background-color: #282c34;
@@ -20,9 +41,9 @@ const AppLink = styled.a`
 class App extends Component {
   public render() {
     return (
-      <div className="App">
+      <Div>
         <Header>
-          <img src={logo} className="App-logo" alt="logo" />
+          <AppLogo src={logo} alt="logo" />
           <p>
             Edit <code>src/App.tsx</code> and save to reload.
           </p>
@@ -34,7 +55,7 @@ class App extends Component {
             Learn React
           </AppLink>
         </Header>
-      </div>
+      </Div>
     );
   }
 }
