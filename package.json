@@ -5,18 +5,16 @@
   "scripts": {
     "build": "node scripts/build.js",
     "ci": "yarn run test && yarn run coverage",
-    "clean": "rimraf dist",
+    "clean": "rimraf build",
     "coverage": "codecov",
     "dev": "node scripts/start.js",
-    "dev2": "webpack-dev-server --config webpack.config.js --mode development --open",
     "format": "prettier --write '{,!(node_modules)/}**/*.{js,jsx,ts,tsx}'",
-    "lint:css": "stylelint './src/**/*.tsx'",
+    "lint:css": "stylelint './src/**/*.{js,jsx,ts,tsx}'",
     "ncu": "ncu",
     "ncuu": "ncu --upgrade",
     "nuke": "rimraf node_modules && rm yarn.lock",
     "test": "jest",
-    "ts": "tslint --project . && tsc",
-    "go": "yarn nuke && yarn && yarn test && yarn dev"
+    "ts": "tslint --project . && tsc"
   },
   "dependencies": {
     "react": "16.7.0",
