@@ -22,7 +22,6 @@ describe("App (jestDom)", () => {
   it("is the only child of the root <div>", () => {
     const root = document.getElementById("root") as HTMLDivElement;
     expect(root.childElementCount).toBe(1);
-    expect(root.firstElementChild).toHaveClass("App");
   });
   it("has the expected text content", () => {
     const root = document.getElementById("root") as HTMLDivElement;

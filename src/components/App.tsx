@@ -23,6 +23,7 @@ const AppLogo = styled.img`
   animation-iteration-count: infinite;
   height: 40vmin;
 `;
+AppLogo.displayName = "AppLogo";
 
 const Header = styled.header`
   background-color: #282c34;
@@ -34,9 +35,12 @@ const Header = styled.header`
   font-size: calc(10px + 2vmin);
   color: white;
 `;
+Header.displayName = "Header";
+
 const AppLink = styled.a`
   color: #61dafb;
 `;
+AppLink.displayName = "AppLink";
 
 class App extends Component {
   public render() {
