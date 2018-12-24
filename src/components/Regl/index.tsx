@@ -1,49 +1,50 @@
 import React, { Component } from "react";
 import REGL from "regl";
-import { makeDrawTriangle } from "../../triangle";
+import {
+  DrawCommandTriangle,
+  IProps,
+  makeDrawCommandTriangle,
+} from "../../triangle";
 
 interface IState {
-  drawFunction: any;
+  drawCommand: DrawCommandTriangle;
 }
 
-class Regl extends Component<{}, IState> {
+class Regl extends Component<IProps, IState> {
+  public static defaultProps: Partial<IProps> = {
+    scale: 1.0,
+  };
   private myRef = React.createRef<HTMLDivElement>();
-  //   private reglContext: any;
   public componentDidMount() {
-    // const { Regl, InitializationOptions } = REGL;
-    // console.log("props", REGL);
-    const node = this.myRef.current!;
-    node.setAttribute("id", "regl-container");
-    // const container = this.myRef;
-    // console.warn("old", require("regl"));
-    console.warn("new", REGL);
-    console.warn("node", node);
-    const regl = REGL(node);
-    console.warn("regl", regl);
-    // const regl = require("regl")({ container });
-    // node.focus();
-    // REGL("#regl-container");
-    // REGL(node);
-    // console.log("this.myRef", regl);
-    // makeDrawTriangle(this.myRef.current);
-    // create a regl draw command by passing a regl context
-    const drawTriangle = makeDrawTriangle(regl);
+    /* When we use a ref, the `current` DOM node could be either the HTML
+     * element we specified (a <div>) or `null`.
+     * React guarantees that refs are set before componentDidMount or
+     * componentDidUpdate hooks, so we can use `!` to tell typescript that we
+     * know that `current` is not `null`.
+     * https://stackoverflow.com/a/50019873/3036129
+     */
+    const div = this.myRef.current!;
+    div.setAttribute("class", "canvas-container");
+    /* Note: instead of creating a WebGL context for each React component, we
+     * could try reusing the same WebGL context for all components.
+     * https://github.com/regl-project/multi-regl
+     */
+    const regl = REGL(div);
+    // console.warn(regl._gl);
+    const drawCommand = makeDrawCommandTriangle(regl);
     this.setState({
-      drawFunction: drawTriangle,
+      drawCommand,
     });
   }
-  //   const regl = require('regl')({
-  //     container,
-  // this.myRef = React.createRef();
   public render() {
-    console.log("state", this.state);
+    const { rgbColors, scale } = this.props;
     if (this.state) {
-      this.state.drawFunction({
-        rgbColors: [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]],
-        scale: 1.0,
+      this.state.drawCommand({
+        rgbColors,
+        scale,
       });
     }
-    return <div ref={this.myRef} />;
+    return <div ref={this.myRef} style={{ border: "1px solid black" }} />;
   }
 }
 

@@ -26,41 +26,15 @@ const AppLogo = styled.img`
 `;
 AppLogo.displayName = "AppLogo";
 
-const Header = styled.header`
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-`;
-Header.displayName = "Header";
-
-const AppLink = styled.a`
-  color: #61dafb;
-`;
-AppLink.displayName = "AppLink";
-
 class App extends Component {
   public render() {
+    const rgbColors = [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]];
     return (
       <Div>
-        <Regl />
-        <Header>
-          <AppLogo src={logo} alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <AppLink
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </AppLink>
-        </Header>
+        <h1>Regl in React</h1>
+        <Regl rgbColors={rgbColors} scale={0.5} />
+        <AppLogo src={logo} alt="logo" />
+        <Regl rgbColors={rgbColors} />
       </Div>
     );
   }

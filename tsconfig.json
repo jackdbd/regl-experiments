@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "allowJs": true,
+    "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "checkJs": true,
     "declaration": false,
@@ -12,12 +12,13 @@
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noUnusedLocals": true,
     "resolveJsonModule": true,
-    "skipLibCheck": true,
+    "skipLibCheck": false,
     "strict": true,
     "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
     "target": "es5"
   },
   "include": ["src"]
