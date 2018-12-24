@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled, { keyframes } from "styled-components";
 import logo from "./logo.svg";
+import Regl from "./Regl";
 
 const Div = styled.div`
   text-align: center;
@@ -46,6 +47,7 @@ class App extends Component {
   public render() {
     return (
       <Div>
+        <Regl />
         <Header>
           <AppLogo src={logo} alt="logo" />
           <p>
