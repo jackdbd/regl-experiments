@@ -15,10 +15,8 @@ const config = {
   moduleNameMapper: {
     "^react-native$": "react-native-web",
     "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
-    // "\\.(glsl)$": "<rootDir>/__mocks__/fileMock.js",
   },
-  setupFiles: ["react-app-polyfill/jsdom"],
-  // setupTestFrameworkScriptFile: "<rootDir>/setupJestDomTests.js",
+  setupFiles: ["react-app-polyfill/jsdom", "<rootDir>/src/setupEnzymeTests.ts"],
   testEnvironment: "jsdom",
   testMatch: [
     "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
