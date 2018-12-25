@@ -1,8 +1,9 @@
-import { mount } from "enzyme";
-import "jest-dom/extend-expect";
+import { mount, render } from "enzyme";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "../components/App";
+import ErrorBoundary from "../components/ErrorBoundary";
+import Regl from "../components/Regl";
 
 describe("App (jestDom)", () => {
   beforeEach(() => {
@@ -24,27 +25,20 @@ describe("App (jestDom)", () => {
     expect(root.childElementCount).toBe(1);
   });
   it("has the expected text content", () => {
-    const root = document.getElementById("root") as HTMLDivElement;
-    const app = root.firstElementChild;
-    const text = "Edit src/App.tsx and save to reload.Learn React";
-    expect(app).toHaveTextContent(text);
+    const h1 = document.querySelector("h1");
+    const text = "Regl in React";
+    expect(h1).toHaveTextContent(text);
   });
 });
 
 describe("App (Enzyme)", () => {
-  it("has the expected number of <Card> components", () => {
-    const wrapper = mount(<App />);
-    expect(wrapper.find("a")).toHaveLength(1);
+  it("has one <img>", () => {
+    const wrapper = render(<App />);
+    expect(wrapper.find("img")).toHaveLength(1);
   });
-  it("has <a> eith expected props", () => {
+  it("renders <ErrorBoundary> in place of <Regl>", () => {
     const wrapper = mount(<App />);
-    const a = wrapper.find("a");
-    expect(a.props()).toHaveProperty("target");
-  });
-  it.skip("calls componentDidMount once", () => {
-    const spy = jest.spyOn(App.prototype, "componentDidMount");
-    mount(<App />);
-    expect(App.prototype.componentDidMount).toHaveBeenCalledTimes(1);
-    spy.mockRestore();
+    expect(wrapper.find(ErrorBoundary)).toHaveLength(2);
+    expect(wrapper.find(Regl)).toHaveLength(0);
   });
 });

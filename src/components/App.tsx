@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled, { keyframes } from "styled-components";
+import ErrorBoundary from "./ErrorBoundary";
 import logo from "./logo.svg";
 import Regl from "./Regl";
 
@@ -32,9 +33,13 @@ class App extends Component {
     return (
       <Div>
         <h1>Regl in React</h1>
-        <Regl rgbColors={rgbColors} scale={0.5} />
+        <ErrorBoundary>
+          <Regl rgbColors={rgbColors} scale={0.5} />
+        </ErrorBoundary>
         <AppLogo src={logo} alt="logo" />
-        <Regl rgbColors={rgbColors} />
+        <ErrorBoundary>
+          <Regl rgbColors={rgbColors} />
+        </ErrorBoundary>
       </Div>
     );
   }
