@@ -1,12 +1,14 @@
 # regl-experiments
 
+[![Build Status](https://travis-ci.org/jackdbd/regl-experiments.svg?branch=master)](https://travis-ci.org/jackdbd/regl-experiments) [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovateapp.com/) [![Code style prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
 [Regl](https://github.com/regl-project/regl) experiments with React and Typescript.
 
 ## Features
 
 Headless visual regression testing with [jest-image-snapshot](https://github.com/americanexpress/jest-image-snapshot) and [Puppeteer](https://github.com/GoogleChrome/puppeteer).
 
-## Install
+## Installation
 
 ```shell
 yarn

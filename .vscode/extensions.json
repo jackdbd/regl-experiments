@@ -9,7 +9,8 @@
     "joelday.docthis",
     "jpoissonnier.vscode-styled-components",
     "mgmcdermott.vscode-language-babel",
+    "shinnn.stylelint",
     "slevesque.shader",
-    "shinnn.stylelint"
+    "yzhang.markdown-all-in-one"
   ]
 }
