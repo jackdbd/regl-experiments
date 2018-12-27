@@ -23,7 +23,13 @@ class App extends React.Component {
           <Route
             exact={true}
             path="/02"
-            render={() => <BatchRendering alpha={1.0} />}
+            render={() => (
+              <BatchRendering
+                alpha={1.0}
+                drawingBufferHeight={500}
+                drawingBufferWidth={500}
+              />
+            )}
           />
           <Route
             render={(props: RouteComponentProps) => <NoMatch {...props} />}

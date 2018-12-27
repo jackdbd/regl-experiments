@@ -6,6 +6,7 @@ import {
   DrawCommandBatchOfTriangles,
   makeDrawCommandBatchOfTriangles,
 } from "../../regl-draw-commands/batch";
+import "./index.css";
 
 const Div = styled.div`
   display: block;
@@ -19,6 +20,8 @@ const Div = styled.div`
  */
 interface IProps {
   alpha: number;
+  drawingBufferHeight: number;
+  drawingBufferWidth: number;
 }
 
 interface IState {
@@ -27,7 +30,7 @@ interface IState {
 
 class BatchRendering extends React.Component<IProps, IState> {
   private regl: REGL.Regl | null = null;
-  private myRef = React.createRef<HTMLDivElement>();
+  private canvasRef = React.createRef<HTMLCanvasElement>();
   public componentDidMount() {
     /* When we use a ref, the `current` DOM node could be either the HTML
      * element we specified (a <div>) or `null`.
@@ -36,13 +39,21 @@ class BatchRendering extends React.Component<IProps, IState> {
      * know that `current` is not `null`.
      * https://stackoverflow.com/a/50019873/3036129
      */
-    const div = this.myRef.current!;
-    div.setAttribute("class", "canvas-container");
+    const canvas = this.canvasRef.current!;
+    // assign a class to the canvas so we can set width and height with the CSS
+    canvas.setAttribute("class", "regl-canvas");
+    /* Set the size of the drawingbuffer (i.e. how many pixels in the canvas).
+     * This has NOTHING to do with the size the canvas is displayed (which is
+     * set in the CSS)
+     * https://webglfundamentals.org/webgl/lessons/webgl-resizing-the-canvas.html
+     */
+    canvas.setAttribute("height", `${this.props.drawingBufferHeight}`);
+    canvas.setAttribute("width", `${this.props.drawingBufferWidth}`);
     /* Note: instead of creating a WebGL context for each React component, we
      * could try reusing the same WebGL context for all components.
      * https://github.com/regl-project/multi-regl
      */
-    this.regl = REGL(div);
+    this.regl = REGL(canvas);
     // console.warn(this.regl._gl);
     const drawCommand = makeDrawCommandBatchOfTriangles(this.regl);
     this.setState({
@@ -76,9 +87,10 @@ class BatchRendering extends React.Component<IProps, IState> {
         <h1>Batch rendering</h1>
         <Link to="/">{"Home"}</Link>
         <div
-          ref={this.myRef}
-          style={{ border: "1px solid black", height: "600px" }}
-        />
+          style={{ border: "1px solid black", height: "600px", width: "800px" }}
+        >
+          <canvas ref={this.canvasRef} />
+        </div>
         <p>TODO: Batch rendering description...</p>
       </Div>
     );
