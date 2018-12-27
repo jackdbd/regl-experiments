@@ -2,6 +2,7 @@ import React from "react";
 import { RouteComponentProps } from "react-router";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import BatchRendering from "../BatchRendering";
+import Bunny from "../Bunny";
 import Home from "../Home";
 import NoMatch from "../NoMatch";
 import OneShotRendering from "../OneShotRendering";
@@ -31,6 +32,7 @@ class App extends React.Component {
               />
             )}
           />
+          <Route exact={true} path="/03" render={() => <Bunny />} />
           <Route
             render={(props: RouteComponentProps) => <NoMatch {...props} />}
           />

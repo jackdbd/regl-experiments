@@ -46,6 +46,16 @@ describe("Visual regressions)", () => {
     const image = await page.screenshot(options);
     expect(image).toMatchImageSnapshot();
   });
+  it("matches the expected snapshot of /03", async () => {
+    const page = await browser.newPage();
+    const url = `${HOST}/03`;
+    await page.goto(url, directNavigationOptions);
+    const options = {
+      path: `${EXPECTED_IMAGES}/bunny-camera.png`,
+    };
+    const image = await page.screenshot(options);
+    expect(image).toMatchImageSnapshot();
+  });
   it("matches the expected snapshot of /no-match", async () => {
     const page = await browser.newPage();
     const url = `${HOST}/no-match`;

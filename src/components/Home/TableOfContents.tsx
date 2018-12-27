@@ -32,7 +32,7 @@ class ToC extends React.Component {
               <Link to="/02">{"Batch rendering"}</Link>
             </Li>
             <Li>
-              <Link to="/03">{"TODO: Camera, geometry ?"}</Link>
+              <Link to="/03">{"Bunny & Camera"}</Link>
             </Li>
             <Li>
               <Link to="/04">{"TODO: react-regl"}</Link>

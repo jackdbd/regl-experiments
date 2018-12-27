@@ -12,6 +12,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
+    // TODO: add type declaration files for regl-camera, then set this to true.
     "noImplicitAny": false,
     "noUnusedLocals": true,
     "resolveJsonModule": true,
