@@ -1,7 +1,28 @@
-/* extend jest with custom matchers from jest-dom
+import {
+  toBeEmpty,
+  toBeInTheDocument,
+  toBeVisible,
+  toHaveClass,
+  toHaveTextContent,
+} from "jest-dom";
+import { toMatchImageSnapshot } from "jest-image-snapshot";
+
+/* Extend jest with custom matchers for the DOM.
  * https://github.com/gnapse/jest-dom
  */
-import "jest-dom/extend-expect";
+expect.extend({
+  toBeEmpty,
+  toBeInTheDocument,
+  toBeVisible,
+  toHaveClass,
+  toHaveTextContent,
+});
+
+/* Extend jest with a custom matcher for visual regressions.
+ * https://github.com/americanexpress/jest-image-snapshot
+ */
+expect.extend({ toMatchImageSnapshot });
+
 /* Visual regression tests take a lot of time, and the default 5000ms timeout
  * might not be enough.
  */

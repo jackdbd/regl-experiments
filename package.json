@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {
     "build": "node scripts/build.js",
-    "ci": "yarn run test:dev && yarn run coverage",
+    "ci": "yarn test:unit && yarn coverage",
     "clean": "rimraf build",
     "coverage": "codecov",
     "dev": "node scripts/start.js",
@@ -20,11 +20,14 @@
     "ncuu": "ncu --upgrade",
     "nuke": "rimraf node_modules && rm yarn.lock",
     "test": "jest --verbose",
-    "test:dev": "concurrently \"yarn dev\" \"yarn test\""
+    "test:dev": "concurrently \"yarn dev\" \"yarn test\"",
+    "test:unit": "jest --testPathIgnorePatterns visual_regressions --verbose"
   },
   "dependencies": {
     "react": "16.7.0",
     "react-dom": "16.7.0",
+    "react-router": "4.3.1",
+    "react-router-dom": "4.3.1",
     "regl": "1.3.11",
     "styled-components": "4.1.3"
   },
@@ -39,6 +42,8 @@
     "@types/node": "10.12.18",
     "@types/react": "16.7.18",
     "@types/react-dom": "16.0.11",
+    "@types/react-router": "4.4.3",
+    "@types/react-router-dom": "4.3.1",
     "@types/styled-components": "4.1.4",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "10.0.1",

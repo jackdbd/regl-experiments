@@ -2,8 +2,7 @@ import { mount, render } from "enzyme";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "../components/App";
-import ErrorBoundary from "../components/ErrorBoundary";
-import Regl from "../components/Regl";
+import TableOfContents from "../components/Home/TableOfContents";
 
 describe("App (jestDom)", () => {
   beforeEach(() => {
@@ -24,21 +23,24 @@ describe("App (jestDom)", () => {
     const root = document.getElementById("root") as HTMLDivElement;
     expect(root.childElementCount).toBe(1);
   });
-  it("has the expected text content", () => {
+  it("has a <h1> the expected text content", () => {
     const h1 = document.querySelector("h1");
-    const text = "Regl in React";
+    const text = "Regl Experiments";
+    /* ts complains because it thinks that these matchers are not available. But
+     * they are available, because we extended jest in setupJest.js
+     */
+    expect(h1).toBeInTheDocument();
     expect(h1).toHaveTextContent(text);
   });
 });
 
 describe("App (Enzyme)", () => {
-  it("has one <img>", () => {
+  it("renders three <img>", () => {
     const wrapper = render(<App />);
-    expect(wrapper.find("img")).toHaveLength(1);
+    expect(wrapper.find("img")).toHaveLength(3);
   });
-  it("renders <ErrorBoundary> in place of <Regl>", () => {
+  it("mounts one <TableOfContents>", () => {
     const wrapper = mount(<App />);
-    expect(wrapper.find(ErrorBoundary)).toHaveLength(2);
-    expect(wrapper.find(Regl)).toHaveLength(0);
+    expect(wrapper.find(TableOfContents)).toHaveLength(1);
   });
 });

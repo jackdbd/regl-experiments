@@ -1,6 +1,6 @@
 import REGL from "regl";
-const frag = require("./shaders/fragmentShader.glsl").default;
-const vert = require("./shaders/vertexShader.glsl").default;
+const frag = require("../shaders/fragmentShader.glsl").default;
+const vert = require("../shaders/vertexShader.glsl").default;
 
 interface IUniforms {
   scale: REGL.Uniform;

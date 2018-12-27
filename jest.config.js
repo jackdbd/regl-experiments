@@ -23,7 +23,8 @@ const config = {
    * of this output. */
   silent: true,
   testEnvironment: "jsdom",
-  testMatch: ["<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}"],
+  testRegex: "/__tests__/.*\\.(jsx?|tsx?)$",
+  // testRegex: "/__tests__/(?!visual_regressions).*\\.(jsx?|tsx?)$",
   testURL: "http://localhost",
   transform: {
     "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",

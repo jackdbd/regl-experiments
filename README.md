@@ -2,11 +2,12 @@
 
 [![Build Status](https://travis-ci.org/jackdbd/regl-experiments.svg?branch=master)](https://travis-ci.org/jackdbd/regl-experiments) [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovateapp.com/) [![Code style prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-[Regl](https://github.com/regl-project/regl) experiments with React and Typescript.
+[Regl](https://github.com/regl-project/regl) experiments with Typescript and React.
 
 ## Features
 
-Headless visual regression testing with [jest-image-snapshot](https://github.com/americanexpress/jest-image-snapshot) and [Puppeteer](https://github.com/GoogleChrome/puppeteer).
+- React component tests with [jest](https://jestjs.io/), [jest-dom](https://github.com/gnapse/jest-dom) and [Enzyme](https://github.com/airbnb/enzyme).
+- Headless visual regression tests with [jest-image-snapshot](https://github.com/americanexpress/jest-image-snapshot) and [Puppeteer](https://github.com/GoogleChrome/puppeteer).
 
 ## Installation
 

@@ -1,19 +1,26 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import REGL from "regl";
+import styled from "styled-components";
 import {
   DrawCommandTriangle,
   IProps,
   makeDrawCommandTriangle,
-} from "../../triangle";
+} from "../../regl-draw-commands/triangle";
+
+const Div = styled.div`
+  display: block;
+`;
 
 interface IState {
   drawCommand: DrawCommandTriangle;
 }
 
-class Regl extends Component<IProps, IState> {
+class OneShotRendering extends Component<IProps, IState> {
   public static defaultProps: Partial<IProps> = {
     scale: 1.0,
   };
+  private regl: REGL.Regl | null = null;
   private myRef = React.createRef<HTMLDivElement>();
   public componentDidMount() {
     /* When we use a ref, the `current` DOM node could be either the HTML
@@ -29,12 +36,17 @@ class Regl extends Component<IProps, IState> {
      * could try reusing the same WebGL context for all components.
      * https://github.com/regl-project/multi-regl
      */
-    const regl = REGL(div);
+    this.regl = REGL(div);
     // console.warn(regl._gl);
-    const drawCommand = makeDrawCommandTriangle(regl);
+    const drawCommand = makeDrawCommandTriangle(this.regl);
     this.setState({
       drawCommand,
     });
+  }
+  public componentWillUnmount() {
+    if (this.regl) {
+      this.regl.destroy();
+    }
   }
   public render() {
     const { rgbColors, scale } = this.props;
@@ -44,8 +56,15 @@ class Regl extends Component<IProps, IState> {
         scale,
       });
     }
-    return <div ref={this.myRef} style={{ border: "1px solid black" }} />;
+    return (
+      <Div>
+        <h1>One shot rendering</h1>
+        <Link to="/">{"Home"}</Link>
+        <div ref={this.myRef} style={{ border: "1px solid black" }} />
+        <p>TODO: One shot rendering description...</p>
+      </Div>
+    );
   }
 }
 
-export default Regl;
+export default OneShotRendering;
