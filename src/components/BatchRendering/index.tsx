@@ -3,23 +3,29 @@ import { Link } from "react-router-dom";
 import REGL from "regl";
 import styled from "styled-components";
 import {
-  DrawCommandTriangle,
-  IProps,
-  makeDrawCommandTriangle,
-} from "../../regl-draw-commands/triangle";
+  DrawCommandBatchOfTriangles,
+  makeDrawCommandBatchOfTriangles,
+} from "../../regl-draw-commands/batch";
 
 const Div = styled.div`
   display: block;
 `;
 
-interface IState {
-  drawCommand: DrawCommandTriangle;
+/**
+ * Props for the React component.
+ * These props might be different from the ones for the regl draw command.
+ *
+ * @interface IProps
+ */
+interface IProps {
+  alpha: number;
 }
 
-class OneShotRendering extends React.Component<IProps, IState> {
-  public static defaultProps: Partial<IProps> = {
-    scale: 1.0,
-  };
+interface IState {
+  drawCommand: DrawCommandBatchOfTriangles;
+}
+
+class BatchRendering extends React.Component<IProps, IState> {
   private regl: REGL.Regl | null = null;
   private myRef = React.createRef<HTMLDivElement>();
   public componentDidMount() {
@@ -37,7 +43,8 @@ class OneShotRendering extends React.Component<IProps, IState> {
      * https://github.com/regl-project/multi-regl
      */
     this.regl = REGL(div);
-    const drawCommand = makeDrawCommandTriangle(this.regl);
+    // console.warn(this.regl._gl);
+    const drawCommand = makeDrawCommandBatchOfTriangles(this.regl);
     this.setState({
       drawCommand,
     });
@@ -48,22 +55,34 @@ class OneShotRendering extends React.Component<IProps, IState> {
     }
   }
   public render() {
-    const { rgbColors, scale } = this.props;
-    if (this.state) {
-      this.state.drawCommand({
-        rgbColors,
-        scale,
-      });
+    const { alpha } = this.props;
+    const clearOptions = {
+      color: [0.0, 0.0, 0.0, 1.0] as REGL.Vec4, // r, g, b, a
+      depth: 1.0,
+    };
+    if (this.state && this.regl) {
+      const callback: REGL.FrameCallback = () => {
+        this.regl!.clear(clearOptions);
+        this.state.drawCommand([
+          { alpha, frequency: 0.1, offset: [0.0, 0.0] },
+          { alpha, frequency: 0.2, offset: [-0.5, 0.0] },
+          { alpha, frequency: 0.5, offset: [0.35, -0.35] },
+        ]);
+      };
+      this.regl.frame(callback);
     }
     return (
       <Div>
-        <h1>One shot rendering</h1>
+        <h1>Batch rendering</h1>
         <Link to="/">{"Home"}</Link>
-        <div ref={this.myRef} style={{ border: "1px solid black" }} />
-        <p>TODO: One shot rendering description...</p>
+        <div
+          ref={this.myRef}
+          style={{ border: "1px solid black", height: "600px" }}
+        />
+        <p>TODO: Batch rendering description...</p>
       </Div>
     );
   }
 }
 
-export default OneShotRendering;
+export default BatchRendering;

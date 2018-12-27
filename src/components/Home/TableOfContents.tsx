@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -18,7 +18,7 @@ const Li = styled.li`
   text-align: left;
 `;
 
-class ToC extends Component {
+class ToC extends React.Component {
   public render() {
     return (
       <FlexRow>
@@ -29,7 +29,7 @@ class ToC extends Component {
               <Link to="/01">{"One shot rendering"}</Link>
             </Li>
             <Li>
-              <Link to="/02">{"TODO: Batch rendering"}</Link>
+              <Link to="/02">{"Batch rendering"}</Link>
             </Li>
             <Li>
               <Link to="/03">{"TODO: Camera, geometry ?"}</Link>

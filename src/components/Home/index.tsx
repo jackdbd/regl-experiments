@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled, { keyframes } from "styled-components";
 import reactLogo from "./ReactLogo.svg";
 import TableOfContents from "./TableOfContents";
@@ -50,7 +50,7 @@ const TypescriptLogo = styled.img`
   height: 100%;
 `;
 
-class Home extends Component {
+class Home extends React.Component {
   public render() {
     return (
       <Div>

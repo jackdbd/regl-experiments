@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "allowJs": false,
+    // "allowJs": false,
     "allowSyntheticDefaultImports": true,
-    "checkJs": true,
+    // "checkJs": false,
     "declaration": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -12,7 +12,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "noUnusedLocals": true,
     "resolveJsonModule": true,
     "skipLibCheck": false,
