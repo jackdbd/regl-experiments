@@ -33,18 +33,18 @@ class BatchRendering extends React.Component<IProps, IState> {
   private canvasRef = React.createRef<HTMLCanvasElement>();
   public componentDidMount() {
     /* When we use a ref, the `current` DOM node could be either the HTML
-     * element we specified (a <div>) or `null`.
-     * React guarantees that refs are set before componentDidMount or
-     * componentDidUpdate hooks, so we can use `!` to tell typescript that we
-     * know that `current` is not `null`.
+     * element we specified (a <canvas>) or `null`.
+     * React guarantees that refs are set before `componentDidMount` or
+     * `componentDidUpdate` hooks, so we can use `!` to tell typescript that we
+     * know for sure that `current` is not `null`.
      * https://stackoverflow.com/a/50019873/3036129
      */
-    const canvas = this.canvasRef.current!;
-    // assign a class to the canvas so we can set width and height with the CSS
+    const canvas: HTMLCanvasElement = this.canvasRef.current!;
+    // assign a class to the canvas so we can set width and height in the CSS.
     canvas.setAttribute("class", "regl-canvas");
-    /* Set the size of the drawingbuffer (i.e. how many pixels in the canvas).
-     * This has NOTHING to do with the size the canvas is displayed (which is
-     * set in the CSS)
+    /* Set the size of the drawingbuffer (i.e. how many pixels are in the
+     * canvas). Note that this has NOTHING to do with the size the canvas is
+     * displayed (which is set in the CSS).
      * https://webglfundamentals.org/webgl/lessons/webgl-resizing-the-canvas.html
      */
     canvas.setAttribute("height", `${this.props.drawingBufferHeight}`);
