@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import REGL from "regl";
-import createCamera from "regl-camera";
+import createCamera, { Vec3 } from "regl-camera";
 import { makeDrawCommandBunny } from "../../regl-draw-commands/bunny";
 import "./index.css";
 
@@ -37,7 +37,9 @@ class Bunny extends React.Component<{}, IState> {
      * https://github.com/regl-project/multi-regl
      */
     this.regl = REGL(canvas);
-    const cameraProps = { center: [0, 2.5, 0] };
+    const cameraProps = {
+      center: [0, 2.5, 0] as Vec3,
+    };
     const camera = createCamera(this.regl, cameraProps);
     const drawCommand = makeDrawCommandBunny(this.regl);
     this.setState({

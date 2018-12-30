@@ -1,6 +1,6 @@
-import normals from "angle-normals";
-import bunny from "bunny";
-import mat4 from "gl-mat4";
+import angleNormals from "angle-normals";
+import bunny, { Vec3 } from "bunny";
+import { mat4 } from "gl-matrix";
 import REGL from "regl";
 
 export type DrawCommand = REGL.DrawCommand<REGL.DefaultContext, {}>;
@@ -31,31 +31,29 @@ export const makeDrawCommandBunny = (reglInstance: REGL.Regl): DrawCommand => {
 
   // convert the vertices of the mesh into the position attribute
   const attributes: MDA = {
-    normal: normals(bunny.cells, bunny.positions) as REGL.Vec3[],
-    position: bunny.positions as REGL.Vec3[],
+    normal: angleNormals(bunny.cells, bunny.positions),
+    position: bunny.positions,
   };
 
   // convert the faces of the mesh into elements
-  const elements = bunny.cells as REGL.Vec3[];
+  const elements = bunny.cells;
 
   const uniforms: MDU = {
-    model: mat4.identity([]) as REGL.Uniform,
-    projection: (context: any, props: any, batchId: number): REGL.Mat4 => {
-      const out = [];
+    model: mat4.identity(mat4.create()) as REGL.Uniform,
+    projection: (context: any, props: any, batchId: number): mat4 => {
+      const out = mat4.create();
       const fovy = Math.PI / 4;
-      // const aspect = props.drawingBufferWidth / props.drawingBufferHeight;
-      // const aspect = canvas.clientWidth / canvas.clientHeight;
       const aspect = props.viewportWidth / props.viewportHeight;
       const near = 0.01;
       const far = 100;
       return mat4.perspective(out, fovy, aspect, near, far);
     },
-    view: (context: any, props: any, batchId: number): REGL.Mat4 => {
+    view: (context: any, props: any, batchId: number): mat4 => {
       // console.log("VIEW", context, props.eye, batchId);
-      const out = [];
-      const eye: REGL.Vec3 = props.eye;
-      const center: REGL.Vec3 = props.center;
-      const up: REGL.Vec3 = props.up;
+      const out = mat4.create();
+      const eye: Vec3 = props.eye;
+      const center: Vec3 = props.center;
+      const up: Vec3 = props.up;
       return mat4.lookAt(out, eye, center, up);
     },
   };
