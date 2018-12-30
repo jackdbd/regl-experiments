@@ -11,7 +11,6 @@
     "build": "node scripts/build.js",
     "ci": "yarn test:unit && yarn coverage",
     "clean": "rimraf build",
-    "copy:types": "cp typings/angle-normals/index.d.ts node_modules/angle-normals/ && cp typings/bunny/index.d.ts node_modules/bunny/ && cp typings/regl-camera/index.d.ts node_modules/regl-camera/",
     "coverage": "codecov",
     "dev": "node scripts/start.js",
     "format": "prettier --write '{,!(node_modules)/}**/*.{js,jsx,ts,tsx,json}'",
