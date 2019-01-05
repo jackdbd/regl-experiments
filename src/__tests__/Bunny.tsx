@@ -1,15 +1,15 @@
 import React from "react";
 import { MemoryRouter } from "react-router";
 import { render } from "react-testing-library";
+import Bunny from "../components/Bunny";
 import ErrorBoundary from "../components/ErrorBoundary";
-import OneShotRendering from "../components/OneShotRendering";
 
-describe("OneShotRendering", () => {
+describe("Bunny", () => {
   it("renders a helpful error message when WebGL is not supported", () => {
     const { getByTestId } = render(
       <MemoryRouter>
         <ErrorBoundary>
-          <OneShotRendering />
+          <Bunny />
         </ErrorBoundary>
       </MemoryRouter>
     );

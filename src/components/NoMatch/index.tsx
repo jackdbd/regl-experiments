@@ -13,7 +13,7 @@ const NoMatch: React.FunctionComponent<RouteComponentProps> = (
   const message = `No match for ${props.location.pathname}`;
   return (
     <Div>
-      <p>{message}</p>
+      <p data-testid="no-match-message">{message}</p>
     </Div>
   );
 };

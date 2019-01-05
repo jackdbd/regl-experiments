@@ -1,15 +1,19 @@
 import React from "react";
 import { MemoryRouter } from "react-router";
 import { render } from "react-testing-library";
+import BatchRendering from "../components/BatchRendering";
 import ErrorBoundary from "../components/ErrorBoundary";
-import OneShotRendering from "../components/OneShotRendering";
 
-describe("OneShotRendering", () => {
+describe("BatchRendering", () => {
   it("renders a helpful error message when WebGL is not supported", () => {
     const { getByTestId } = render(
       <MemoryRouter>
         <ErrorBoundary>
-          <OneShotRendering />
+          <BatchRendering
+            alpha={1.0}
+            drawingBufferHeight={500}
+            drawingBufferWidth={500}
+          />
         </ErrorBoundary>
       </MemoryRouter>
     );

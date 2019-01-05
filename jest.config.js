@@ -15,7 +15,7 @@ const config = {
   moduleNameMapper: {
     "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
   },
-  setupFiles: ["react-app-polyfill/jsdom", "<rootDir>/src/setupEnzymeTests.ts"],
+  setupFiles: ["react-app-polyfill/jsdom"],
   setupTestFrameworkScriptFile: "<rootDir>/src/setupJest.js",
   /* regl prints many errors with `console.error` when a WebGL rendering context
    * is not available. This occurs even if the React component that uses a WebGL

@@ -1,9 +1,7 @@
-import { mount, render as enzymeRender } from "enzyme";
 import React from "react";
 import ReactDOM from "react-dom";
 import { render, waitForElement } from "react-testing-library";
 import App from "../components/App";
-import TableOfContents from "../components/Home/TableOfContents";
 
 describe("App (jestDom)", () => {
   beforeEach(() => {
@@ -35,18 +33,7 @@ describe("App (jestDom)", () => {
   });
 });
 
-describe("App (Enzyme)", () => {
-  it("renders three <img>", () => {
-    const wrapper = enzymeRender(<App />);
-    expect(wrapper.find("img")).toHaveLength(3);
-  });
-  it("mounts one <TableOfContents>", () => {
-    const wrapper = mount(<App />);
-    expect(wrapper.find(TableOfContents)).toHaveLength(1);
-  });
-});
-
-describe("App (react-testing-library)", () => {
+describe("App", () => {
   it("renders the expected text", async () => {
     const { getByText } = render(<App />);
     await waitForElement(() => getByText(/Regl experiments/i));

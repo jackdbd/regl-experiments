@@ -4,9 +4,11 @@
 
 [Regl](https://github.com/regl-project/regl) experiments with Typescript and React.
 
+## :warning: Under contruction :construction:
+
 ## Features
 
-- React component tests with [jest](https://jestjs.io/), [jest-dom](https://github.com/gnapse/jest-dom) and [Enzyme](https://github.com/airbnb/enzyme).
+- React component tests with [jest](https://jestjs.io/), [jest-dom](https://github.com/gnapse/jest-dom) and [react-testing-library](https://github.com/kentcdodds/react-testing-library).
 - Headless visual regression tests with [jest-image-snapshot](https://github.com/americanexpress/jest-image-snapshot) and [Puppeteer](https://github.com/GoogleChrome/puppeteer).
 
 ## Installation

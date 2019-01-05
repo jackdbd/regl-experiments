@@ -38,7 +38,7 @@ class ErrorBoundary extends React.Component<IProps, IState> {
         : null;
       return (
         <Div>
-          <p>{summaryInfo}</p>
+          <p data-testid="error-boundary-summary">{summaryInfo}</p>
           <p>{detailedInfo}</p>
         </Div>
       );
