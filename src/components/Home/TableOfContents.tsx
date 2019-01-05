@@ -24,7 +24,7 @@ class ToC extends React.Component {
       <FlexRow>
         <div>
           <h3>Table of Contents</h3>
-          <Ul>
+          <Ul data-testid="list-of-regl-experiments">
             <Li>
               <Link to="/01">{"One shot rendering"}</Link>
             </Li>

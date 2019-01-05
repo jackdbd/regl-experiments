@@ -21,7 +21,7 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "target": "es5",
-    "typeRoots": ["types"]
+    "typeRoots": ["types", "node_modules/@types"]
   },
   "include": ["src"]
 }

@@ -6,6 +6,8 @@ import {
   toHaveTextContent,
 } from "jest-dom";
 import { toMatchImageSnapshot } from "jest-image-snapshot";
+import "jest-dom/extend-expect";
+import "react-testing-library/cleanup-after-each";
 
 /* Extend jest with custom matchers for the DOM.
  * https://github.com/gnapse/jest-dom
