@@ -1,6 +1,4 @@
 import REGL from "regl";
-const frag = require("../shaders/fragmentShader.glsl").default;
-const vert = require("../shaders/vertexShader.glsl").default;
 
 interface IUniforms {
   scale: REGL.Uniform;
@@ -11,6 +9,7 @@ interface IAttributes {
   position: REGL.Attribute;
 }
 
+// props for the regl draw command
 export interface IProps {
   rgbColors: number[][];
   scale: number;
@@ -30,7 +29,9 @@ type MDU = REGL.MaybeDynamicUniforms<any, REGL.DefaultContext, IProps>;
  * @param reglContext The regl instance which will contain the WebGL context.
  */
 export const makeDrawCommandTriangle = (
-  reglContext: REGL.Regl
+  reglContext: REGL.Regl,
+  frag: string,
+  vert: string
 ): DrawCommandTriangle => {
   const attributes: MDA = {
     color: reglContext.prop<IProps, "rgbColors">("rgbColors") as REGL.Attribute,

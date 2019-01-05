@@ -24,7 +24,8 @@
     "predeploy": "yarn build",
     "test": "jest --verbose",
     "test:dev": "concurrently \"yarn dev\" \"yarn test\"",
-    "test:unit": "jest --testPathIgnorePatterns visual_regressions --verbose"
+    "test:unit": "jest --testPathIgnorePatterns visual_regressions --verbose",
+    "static": "chromium-browser build/index.html"
   },
   "dependencies": {
     "angle-normals": "1.0.0",
@@ -46,6 +47,7 @@
     "@babel/plugin-transform-react-jsx-source": "7.2.0",
     "@svgr/webpack": "4.1.0",
     "@types/enzyme": "3.1.15",
+    "@types/gl": "4.1.0",
     "@types/gl-matrix": "2.4.4",
     "@types/jest": "23.3.10",
     "@types/node": "10.12.18",
@@ -81,6 +83,7 @@
     "fork-ts-checker-webpack-plugin-alt": "0.4.14",
     "fs-extra": "7.0.1",
     "gh-pages": "2.0.1",
+    "gl": "4.1.1",
     "html-webpack-plugin": "4.0.0-alpha.2",
     "identity-obj-proxy": "3.0.0",
     "jest": "23.6.0",

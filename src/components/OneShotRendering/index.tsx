@@ -4,13 +4,27 @@ import REGL from "regl";
 import styled from "styled-components";
 import {
   DrawCommandTriangle,
-  IProps,
+  IProps as IDrawProps,
   makeDrawCommandTriangle,
 } from "../../regl-draw-commands/triangle";
+import { createReglInstance } from "../../utils";
+const frag: string = require("../../shaders/fragmentShader.glsl").default;
+const vert: string = require("../../shaders/vertexShader.glsl").default;
 
 const Div = styled.div`
   display: block;
 `;
+
+/**
+ * Props for the React component.
+ * These props might be different from the ones for the regl draw command.
+ *
+ * @interface IProps
+ */
+interface IProps extends IDrawProps {
+  drawingBufferHeight: number;
+  drawingBufferWidth: number;
+}
 
 interface IState {
   drawCommand: DrawCommandTriangle;
@@ -21,23 +35,14 @@ class OneShotRendering extends React.Component<IProps, IState> {
     scale: 1.0,
   };
   private regl: REGL.Regl | null = null;
-  private myRef = React.createRef<HTMLDivElement>();
+  private canvasRef = React.createRef<HTMLCanvasElement>();
   public componentDidMount() {
-    /* When we use a ref, the `current` DOM node could be either the HTML
-     * element we specified (a <div>) or `null`.
-     * React guarantees that refs are set before componentDidMount or
-     * componentDidUpdate hooks, so we can use `!` to tell typescript that we
-     * know that `current` is not `null`.
-     * https://stackoverflow.com/a/50019873/3036129
-     */
-    const div = this.myRef.current!;
-    div.setAttribute("class", "canvas-container");
-    /* Note: instead of creating a WebGL context for each React component, we
-     * could try reusing the same WebGL context for all components.
-     * https://github.com/regl-project/multi-regl
-     */
-    this.regl = REGL(div);
-    const drawCommand = makeDrawCommandTriangle(this.regl);
+    this.regl = createReglInstance(
+      this.canvasRef,
+      this.props.drawingBufferHeight,
+      this.props.drawingBufferWidth
+    );
+    const drawCommand = makeDrawCommandTriangle(this.regl, frag, vert);
     this.setState({
       drawCommand,
     });
@@ -59,7 +64,11 @@ class OneShotRendering extends React.Component<IProps, IState> {
       <Div>
         <h1>One shot rendering</h1>
         <Link to="/">{"Home"}</Link>
-        <div ref={this.myRef} style={{ border: "1px solid black" }} />
+        <div
+          style={{ border: "1px solid black", height: "600px", width: "800px" }}
+        >
+          <canvas ref={this.canvasRef} />
+        </div>
         <p>TODO: One shot rendering description...</p>
       </Div>
     );

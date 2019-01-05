@@ -18,7 +18,12 @@ class App extends React.Component {
             exact={true}
             path="/01"
             render={() => (
-              <OneShotRendering rgbColors={rgbColors} scale={1.0} />
+              <OneShotRendering
+                drawingBufferHeight={500}
+                drawingBufferWidth={500}
+                rgbColors={rgbColors}
+                scale={1.0}
+              />
             )}
           />
           <Route
