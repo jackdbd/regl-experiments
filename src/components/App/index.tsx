@@ -1,6 +1,6 @@
 import React from "react";
 import { RouteComponentProps } from "react-router";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import BatchRendering from "../BatchRendering";
 import Bunny from "../Bunny";
 import Home from "../Home";
@@ -11,7 +11,7 @@ class App extends React.Component {
   public render() {
     const rgbColors = [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]];
     return (
-      <BrowserRouter>
+      <HashRouter>
         <Switch>
           <Route exact={true} path="/" component={Home} />
           <Route
@@ -42,7 +42,7 @@ class App extends React.Component {
             render={(props: RouteComponentProps) => <NoMatch {...props} />}
           />
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }

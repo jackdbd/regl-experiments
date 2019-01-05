@@ -28,7 +28,7 @@ describe("Visual regressions)", () => {
   });
   it("matches the expected snapshot of /01", async () => {
     const page = await browser.newPage();
-    const url = `${HOST}/01`;
+    const url = `${HOST}/#/01`;
     await page.goto(url, directNavigationOptions);
     const options = {
       path: `${EXPECTED_IMAGES}/one-shot-rendering.png`,
@@ -38,7 +38,7 @@ describe("Visual regressions)", () => {
   });
   it("matches the expected snapshot of /02", async () => {
     const page = await browser.newPage();
-    const url = `${HOST}/02`;
+    const url = `${HOST}/#/02`;
     await page.goto(url, directNavigationOptions);
     const options = {
       path: `${EXPECTED_IMAGES}/batch-rendering.png`,
@@ -48,7 +48,7 @@ describe("Visual regressions)", () => {
   });
   it("matches the expected snapshot of /03", async () => {
     const page = await browser.newPage();
-    const url = `${HOST}/03`;
+    const url = `${HOST}/#/03`;
     await page.goto(url, directNavigationOptions);
     const options = {
       path: `${EXPECTED_IMAGES}/bunny-camera.png`,
@@ -58,7 +58,7 @@ describe("Visual regressions)", () => {
   });
   it("matches the expected snapshot of /no-match", async () => {
     const page = await browser.newPage();
-    const url = `${HOST}/no-match`;
+    const url = `${HOST}/#/no-match`;
     await page.goto(url, directNavigationOptions);
     const options = {
       path: `${EXPECTED_IMAGES}/no-match.png`,
