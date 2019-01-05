@@ -1,10 +1,11 @@
 {
   "name": "regl-experiments",
   "description": "Regl experiments with React and Typescript",
+  "author": "jackdbd <jackdebidda@gmail.com> (http://www.giacomodebidda.com/)",
+  "homepage": "https://jackdbd.github.io/regl-experiments",
+  "repository": "git@github.com:jackdbd/regl-experiments.git",
   "version": "0.1.0",
   "main": "./src/index.tsx",
-  "repository": "git@github.com:jackdbd/regl-experiments.git",
-  "author": "jackdbd <jackdebidda@gmail.com> (http://www.giacomodebidda.com/)",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -12,6 +13,7 @@
     "ci": "yarn test:unit && yarn coverage",
     "clean": "rimraf build",
     "coverage": "codecov",
+    "deploy": "gh-pages -d build",
     "dev": "node scripts/start.js",
     "format": "prettier --write '{,!(node_modules)/}**/*.{js,jsx,ts,tsx,json}'",
     "lint:css": "stylelint --config .stylelintrc.json --formatter verbose './src/**/*.{css,js,jsx,ts,tsx}'",
@@ -19,6 +21,7 @@
     "ncu": "ncu",
     "ncuu": "ncu --upgrade",
     "nuke": "rimraf node_modules && rm yarn.lock",
+    "predeploy": "yarn build",
     "test": "jest --verbose",
     "test:dev": "concurrently \"yarn dev\" \"yarn test\"",
     "test:unit": "jest --testPathIgnorePatterns visual_regressions --verbose"
@@ -77,6 +80,7 @@
     "file-loader": "3.0.1",
     "fork-ts-checker-webpack-plugin-alt": "0.4.14",
     "fs-extra": "7.0.1",
+    "gh-pages": "2.0.1",
     "html-webpack-plugin": "4.0.0-alpha.2",
     "identity-obj-proxy": "3.0.0",
     "jest": "23.6.0",
