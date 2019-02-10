@@ -1,6 +1,6 @@
 # regl-experiments
 
-[![Build Status](https://travis-ci.org/jackdbd/regl-experiments.svg?branch=master)](https://travis-ci.org/jackdbd/regl-experiments) [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovateapp.com/) [![Code style prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![Build Status](https://travis-ci.org/jackdbd/regl-experiments.svg?branch=master)](https://travis-ci.org/jackdbd/regl-experiments) [![codecov](https://codecov.io/gh/jackdbd/regl-experiments/branch/master/graph/badge.svg)](https://codecov.io/gh/jackdbd/regl-experiments) [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovateapp.com/) [![Code style prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 [Regl](https://github.com/regl-project/regl) experiments with Typescript and React.
 
