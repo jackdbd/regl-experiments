@@ -1,1 +1,0 @@
-{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,aACE,WAAY,AACZ,WAAa,CACd","file":"main.b24adcb2.chunk.css","sourcesContent":[".regl-canvas {\n  width: 100%;\n  height: 100%;\n}\n"]}
